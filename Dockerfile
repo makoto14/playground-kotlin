@@ -1,6 +1,9 @@
 # ビルドステージ
 FROM gradle:jdk17 AS build
 
+# Lambda web adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.5.0 /lambda-adapter /opt/extensions/lambda-adapter
+
 # プロジェクトの依存ファイルをコピー
 COPY --chown=gradle:gradle . /home/gradle/src
 
